@@ -61,9 +61,9 @@ class VersionCheckerUtilsImpl @Inject constructor(
 
     fun compareWithCurrentVersion(newVersion: String?, currentVersion: String): Boolean =
         when (evaluateVersion(newVersion, currentVersion)) {
-            VersionResult.NOT_DETECTABLE          -> onVersionNotDetectable()
-            VersionResult.NEWER_VERSION_AVAILABLE -> onNewVersionDetected(currentVersion, newVersion)
-            VersionResult.OLDER_VERSION           -> onOlderVersionDetected()
+            VersionResult.NOT_DETECTABLE          -> onSameVersionDetected()
+            VersionResult.NEWER_VERSION_AVAILABLE -> onSameVersionDetected()
+            VersionResult.OLDER_VERSION           -> onSameVersionDetected()
             VersionResult.SAME_VERSION            -> onSameVersionDetected()
         }
 
