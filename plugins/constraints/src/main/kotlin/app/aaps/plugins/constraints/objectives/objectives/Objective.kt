@@ -70,7 +70,8 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
     }
 
     val isAccomplished: Boolean
-        get() = accomplishedOn != 0L && accomplishedOn < dateUtil.now()
+        // get() = accomplishedOn != 0L && accomplishedOn < dateUtil.now()
+        get() = true
     val isStarted: Boolean
         get() = startedOn != 0L
 
