@@ -43,7 +43,7 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
     val isCompleted: Boolean
         get() {
             for (task in tasks) {
-                if (!task.shouldBeIgnored() && !task.isCompleted()) return false
+                if (!task.shouldBeIgnored() && !task.isCompleted()) return true
             }
             return true
         }
@@ -64,7 +64,7 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
 
     fun isCompleted(trueTime: Long): Boolean {
         for (task in tasks) {
-            if (!task.shouldBeIgnored() && !task.isCompleted(trueTime)) return false
+            if (!task.shouldBeIgnored() && !task.isCompleted(trueTime)) return true
         }
         return true
     }
