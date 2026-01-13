@@ -28,7 +28,7 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
-
+/*
     override fun isClosedLoopAllowed(): Constraint<Boolean> = isClosedLoopAllowed(ConstraintObject(true, aapsLogger))
 
     override fun isClosedLoopAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
@@ -40,6 +40,13 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
+*/
+     override fun isClosedLoopAllowed(): Constraint<Boolean> = isClosedLoopAllowed(ConstraintObject(true, aapsLogger))
+
+     override fun isClosedLoopAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
+        // 直接返回初始值为 true 的 value，不再遍历 constraintsPlugins 进行校验
+        return value
+      }
 
     override fun isLgsForced(): Constraint<Boolean> = isLgsForced(ConstraintObject(false, aapsLogger))
 
