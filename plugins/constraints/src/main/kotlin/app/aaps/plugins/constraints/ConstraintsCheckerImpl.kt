@@ -28,7 +28,7 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
-/*
+
     override fun isClosedLoopAllowed(): Constraint<Boolean> = isClosedLoopAllowed(ConstraintObject(true, aapsLogger))
 
     override fun isClosedLoopAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
@@ -40,14 +40,8 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
-*/
-     override fun isClosedLoopAllowed(): Constraint<Boolean> = isClosedLoopAllowed(ConstraintObject(true, aapsLogger))
 
-     override fun isClosedLoopAllowed(value: Constraint<Boolean>): Constraint<Boolean> {
-        // 直接返回初始值为 true 的 value，不再遍历 constraintsPlugins 进行校验
-        return value
-      }
-
+   
     override fun isLgsForced(): Constraint<Boolean> = isLgsForced(ConstraintObject(false, aapsLogger))
 
     override fun isLgsForced(value: Constraint<Boolean>): Constraint<Boolean> {
@@ -72,7 +66,7 @@ class ConstraintsCheckerImpl @Inject constructor(
         return value
     }
     
-/*
+
     override fun isSMBModeEnabled(): Constraint<Boolean> = isSMBModeEnabled(ConstraintObject(true, aapsLogger))
 
     override fun isSMBModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
@@ -84,17 +78,8 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
-*/
 
-    override fun isSMBModeEnabled(): Constraint<Boolean> {
-    // 直接返回一个始终为 true 的约束对象，完全不查插件
-    return ConstraintObject(true, aapsLogger)
-    }
 
-    override fun isSMBModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
-    // 即使外部传入了某个 value，我们也强制返回 true
-    return ConstraintObject(true, aapsLogger)
-    }
 
     override fun isUAMEnabled(): Constraint<Boolean> = isUAMEnabled(ConstraintObject(true, aapsLogger))
 
