@@ -64,7 +64,8 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
-
+    
+/*
     override fun isSMBModeEnabled(): Constraint<Boolean> = isSMBModeEnabled(ConstraintObject(true, aapsLogger))
 
     override fun isSMBModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
@@ -75,6 +76,17 @@ class ConstraintsCheckerImpl @Inject constructor(
             constraint.isSMBModeEnabled(value)
         }
         return value
+    }
+*/
+
+    override fun isSMBModeEnabled(): Constraint<Boolean> {
+    // 直接返回一个始终为 true 的约束对象，完全不查插件
+    return ConstraintObject(true, aapsLogger)
+    }
+
+    override fun isSMBModeEnabled(value: Constraint<Boolean>): Constraint<Boolean> {
+    // 即使外部传入了某个 value，我们也强制返回 true
+    return ConstraintObject(true, aapsLogger)
     }
 
     override fun isUAMEnabled(): Constraint<Boolean> = isUAMEnabled(ConstraintObject(true, aapsLogger))
