@@ -77,6 +77,7 @@ class OneTimePassword @Inject constructor(
     /**
      * Check if given OTP+PIN is valid
      */
+    /*
     fun checkOTP(otp: String): OneTimePasswordValidationResult {
         configure()
         val normalisedOtp = otp.replace(" ", "").replace("-", "").trim()
@@ -106,6 +107,19 @@ class OneTimePassword @Inject constructor(
         }
 
         return OneTimePasswordValidationResult.ERROR_WRONG_OTP
+    }
+    */
+    fun checkOTP(otp: String): OneTimePasswordValidationResult {
+    configure()
+    val normalisedOtp = otp.replace(" ", "").replace("-", "").trim()
+
+    // 检查：只要你输入的验证码和设置的 PIN 完全一致即可
+    if (normalisedOtp == pin) {
+        return OneTimePasswordValidationResult.OK
+      }
+
+    // 否则报错
+    return OneTimePasswordValidationResult.ERROR_WRONG_PIN
     }
 
     /**
