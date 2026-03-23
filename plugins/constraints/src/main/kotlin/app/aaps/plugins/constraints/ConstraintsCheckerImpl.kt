@@ -41,6 +41,7 @@ class ConstraintsCheckerImpl @Inject constructor(
         return value
     }
 
+   
     override fun isLgsForced(): Constraint<Boolean> = isLgsForced(ConstraintObject(false, aapsLogger))
 
     override fun isLgsForced(value: Constraint<Boolean>): Constraint<Boolean> {
@@ -64,6 +65,7 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
+    
 
     override fun isSMBModeEnabled(): Constraint<Boolean> = isSMBModeEnabled(ConstraintObject(true, aapsLogger))
 
@@ -76,6 +78,8 @@ class ConstraintsCheckerImpl @Inject constructor(
         }
         return value
     }
+
+
 
     override fun isUAMEnabled(): Constraint<Boolean> = isUAMEnabled(ConstraintObject(true, aapsLogger))
 

@@ -50,11 +50,11 @@ class CommandSetProfile(
         aapsLogger.debug(LTag.PUMPQUEUE, "Result success: ${r.success} enacted: ${r.enacted} profile: $profile")
         callback?.result(r)?.run()
         // Send SMS notification if ProfileSwitch is coming from NS
-        val profileSwitch = persistenceLayer.getEffectiveProfileSwitchActiveAt(dateUtil.now())
-        if (profileSwitch != null && r.enacted && hasNsId && !config.AAPSCLIENT) {
-            if (smsCommunicator.isEnabled() && !config.doNotSendSmsOnProfileChange())
-                smsCommunicator.sendNotificationToAllNumbers(rh.gs(app.aaps.core.ui.R.string.profile_set_ok))
-        }
+        // val profileSwitch = persistenceLayer.getEffectiveProfileSwitchActiveAt(dateUtil.now())
+        // if (profileSwitch != null && r.enacted && hasNsId && !config.AAPSCLIENT) {
+        //     if (smsCommunicator.isEnabled() && !config.doNotSendSmsOnProfileChange())
+        //         smsCommunicator.sendNotificationToAllNumbers(rh.gs(app.aaps.core.ui.R.string.profile_set_ok))
+        // }
     }
 
     override fun status(): String = rh.gs(app.aaps.core.ui.R.string.set_profile)

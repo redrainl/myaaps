@@ -77,6 +77,7 @@ class OneTimePassword @Inject constructor(
     /**
      * Check if given OTP+PIN is valid
      */
+    /*
     fun checkOTP(otp: String): OneTimePasswordValidationResult {
         configure()
         val normalisedOtp = otp.replace(" ", "").replace("-", "").trim()
@@ -106,6 +107,31 @@ class OneTimePassword @Inject constructor(
         }
 
         return OneTimePasswordValidationResult.ERROR_WRONG_OTP
+    }
+    */
+    fun checkOTP(otp: String): OneTimePasswordValidationResult {
+    configure()
+    val normalisedOtp = otp.replace(" ", "").replace("-", "").trim()
+
+    // 1. 获取当前小时 (0-23)
+    val calendar = java.util.Calendar.getInstance()
+    val currentHour = calendar.get(java.util.Calendar.HOUR_OF_DAY)
+
+    // 2. 构造预期的验证码：PIN + 小时
+    // 例如：PIN是1234，当前下午5点（17点），预期验证码就是 "123417"
+    val expectedOtp = "$pin$currentHour"
+
+    // 3. 增加一点容错性：考虑到整点跳转时（比如14:59发，15:00到），允许匹配前一个小时
+    val lastHour = if (currentHour == 0) 23 else currentHour - 1
+    val expectedOtpLastHour = "$pin$lastHour"
+
+    // 4. 验证对比
+    if (normalisedOtp == expectedOtp || normalisedOtp == expectedOtpLastHour) {
+        return OneTimePasswordValidationResult.OK
+    }
+
+    // 如果都不匹配，报错
+    return OneTimePasswordValidationResult.ERROR_WRONG_OTP
     }
 
     /**
